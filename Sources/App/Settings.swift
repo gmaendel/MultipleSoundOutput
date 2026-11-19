@@ -10,6 +10,7 @@ enum Settings {
         static let volumeKeys = "ControlVolumeKeys"
         static let showHUD = "ShowVolumeHUD"
         static let hasLaunchedBefore = "HasLaunchedBefore"
+        static let rememberedDisplays = "RememberedDisplayUIDs"
     }
 
     static func registerDefaults() {
@@ -20,7 +21,8 @@ enum Settings {
         ])
     }
 
-    /// Switch to the all-displays multi-output on launch, on wake, and when a display is plugged in.
+    /// Switch to the all-displays multi-output on launch, on wake, and when a display is plugged in,
+    /// and back to the Mac's own speakers when those displays are unplugged.
     static var autoUseDisplays: Bool {
         get { defaults.bool(forKey: Key.autoUseDisplays) }
         set { defaults.set(newValue, forKey: Key.autoUseDisplays) }
@@ -34,6 +36,13 @@ enum Settings {
     static var showHUD: Bool {
         get { defaults.bool(forKey: Key.showHUD) }
         set { defaults.set(newValue, forKey: Key.showHUD) }
+    }
+
+    /// UIDs of every display speaker seen on this Mac, so a Multi-Output Device made of displays
+    /// can still be recognised after they're unplugged.
+    static var rememberedDisplayUIDs: Set<String> {
+        get { Set(defaults.stringArray(forKey: Key.rememberedDisplays) ?? []) }
+        set { defaults.set(newValue.sorted(), forKey: Key.rememberedDisplays) }
     }
 
     /// True only the first time the app runs.

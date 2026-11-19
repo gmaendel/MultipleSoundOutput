@@ -125,7 +125,11 @@ final class StatusBarController: NSObject, NSMenuDelegate {
         menu.addItem(keysItem)
 
         menu.addItem(toggle("Show Volume on Screen", on: Settings.showHUD, action: #selector(toggleHUD)))
-        menu.addItem(toggle("Switch to Both Displays Automatically", on: Settings.autoUseDisplays, action: #selector(toggleAutoDisplays)))
+        let autoItem = toggle("Switch Output Automatically", on: Settings.autoUseDisplays, action: #selector(toggleAutoDisplays))
+        if #available(macOS 14.4, *) {
+            autoItem.subtitle = "Displays when connected, otherwise \(audio.builtInOutput?.name ?? "the Mac’s speakers")"
+        }
+        menu.addItem(autoItem)
         menu.addItem(toggle("Open at Login", on: LaunchAtLogin.isEnabled, action: #selector(toggleLaunchAtLogin)))
 
         menu.addItem(.separator())

@@ -12,7 +12,7 @@ macOS can play to several outputs through a **Multi-Output Device** (Audio MIDI 
 
 - **Menu bar menu**: a volume slider, a list of outputs, and a **Both Displays** item that sends sound to every connected display speaker.
 - **Keyboard volume keys** (🔉 🔊 🔇) work while the Multi-Output Device is selected, with an on-screen level indicator. Hold **⇧⌥** for finer steps. For any other output, the keys pass through to macOS as usual.
-- **Switches automatically** to both displays at launch, after the Mac wakes, and when a display is plugged back in. It doesn't override you when you pick another output by hand. You can turn this off in the menu.
+- **Switches automatically** to both displays at launch, after the Mac wakes, and when a display is plugged back in. When you unplug the displays, it moves sound back to the MacBook speakers (or headphones, if they're plugged in), so you're never left on a Multi-Output Device with nothing connected. It doesn't override you when you pick another output by hand. You can turn this off in the menu (**Switch Output Automatically**).
 - **Reuses your existing Multi-Output Device** from Audio MIDI Setup. If there isn't one, it creates one named "All Displays", with drift correction on the second display.
 - **Open at Login** toggle.
 - **Command line** for scripts and Shortcuts:

@@ -69,6 +69,18 @@ struct AudioDevice: Hashable, Identifiable {
         return CoreAudio.objectIDs(id, CoreAudio.address(kAudioAggregateDevicePropertyActiveSubDeviceList))
             .filter { CoreAudio.channelCount($0, scope: kAudioObjectPropertyScopeOutput) > 0 }
     }
+
+    /// Sub-device UIDs of a Multi-Output (stacked aggregate) device, or nil for any other device.
+    /// Reads the HAL directly, so it also works once every sub-device is unplugged and the
+    /// device has no outputs left (and so no `AudioDevice`).
+    static func multiOutputSubDeviceUIDs(of id: AudioObjectID) -> [String]? {
+        guard CoreAudio.uint32(id, CoreAudio.address(kAudioDevicePropertyTransportType)) == kAudioDeviceTransportTypeAggregate,
+              let composition = CoreAudio.dictionary(id, CoreAudio.address(kAudioAggregateDevicePropertyComposition)),
+              (composition[kAudioAggregateDeviceIsStackedKey] as? NSNumber)?.boolValue == true
+        else { return nil }
+        let list = CoreAudio.array(id, CoreAudio.address(kAudioAggregateDevicePropertyFullSubDeviceList))
+        return (list as? [String]) ?? []
+    }
 }
 
 /// Volume and mute control for a single (non-aggregate) device.

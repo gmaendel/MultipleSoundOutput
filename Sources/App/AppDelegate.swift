@@ -6,6 +6,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var keys: MediaKeyMonitor!
     private var statusBar: StatusBarController!
     private var autoSwitchWork: DispatchWorkItem?
+    private var pendingSwitchToDisplays = false
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         Settings.registerDefaults()
@@ -20,13 +21,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         audio.onChange = { [weak self] in self?.statusBar.refresh() }
-        audio.onDisplaysConnected = { [weak self] in self?.switchToDisplaysIfWanted(after: 1.0) }
+        audio.onDisplaysConnected = { [weak self] in self?.switchOutputAutomatically(after: 1.0) }
+        audio.onDisplaysDisconnected = { [weak self] in
+            self?.switchOutputAutomatically(after: 1.0, toDisplays: false)
+        }
         audio.startObserving()
 
         NSWorkspace.shared.notificationCenter.addObserver(
             forName: NSWorkspace.didWakeNotification, object: nil, queue: .main
         ) { [weak self] _ in
-            self?.switchToDisplaysIfWanted(after: 3.0)
+            self?.switchOutputAutomatically(after: 3.0)
         }
 
         if Settings.volumeKeysEnabled {
@@ -34,7 +38,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             keys.start(promptForPermission: firstLaunch)
         }
 
-        switchToDisplaysIfWanted(after: 0)
+        switchOutputAutomatically(after: 0)
     }
 
     // MARK: Volume keys
@@ -67,22 +71,32 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     // MARK: Automatic switching
 
-    /// Moves sound to the all-displays multi-output when two or more displays are connected.
-    /// Runs on launch, on wake, and when a display is plugged in — not when the user picks
-    /// another output by hand.
-    private func switchToDisplaysIfWanted(after delay: TimeInterval) {
+    /// Keeps sound where it belongs as displays come and go:
+    /// - With `toDisplays`, moves it to the all-displays multi-output when two or more displays
+    ///   are connected. This runs on launch, on wake, and when a display is plugged in — not
+    ///   when the user picks another output by hand.
+    /// - Moves it to the Mac's own speakers when the displays it was playing through are all
+    ///   unplugged. Any other output the user picked is left alone.
+    private func switchOutputAutomatically(after delay: TimeInterval, toDisplays: Bool = true) {
         guard Settings.autoUseDisplays else { return }
         autoSwitchWork?.cancel()
+        // A disconnect mustn't cancel a switch to the displays that is still pending (e.g. on wake).
+        pendingSwitchToDisplays = pendingSwitchToDisplays || toDisplays
         let work = DispatchWorkItem { [weak self] in
             guard let self else { return }
+            let toDisplays = self.pendingSwitchToDisplays
+            self.pendingSwitchToDisplays = false
+
             self.audio.reload()
-            guard self.audio.displaySpeakers.count >= 2, !self.audio.isUsingDisplayMultiOutput else { return }
-            do {
-                try self.audio.useAllDisplays()
-                self.statusBar.refresh()
-            } catch {
-                NSLog("MultipleSoundOutput: automatic switch failed: \(error.localizedDescription)")
+            if toDisplays, self.audio.displaySpeakers.count >= 2, !self.audio.isUsingDisplayMultiOutput {
+                do {
+                    try self.audio.useAllDisplays()
+                } catch {
+                    NSLog("MultipleSoundOutput: automatic switch failed: \(error.localizedDescription)")
+                }
             }
+            self.audio.leaveUnpluggedDisplays()
+            self.statusBar.refresh()
         }
         autoSwitchWork = work
         DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: work)

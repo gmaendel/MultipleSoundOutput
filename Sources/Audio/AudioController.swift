@@ -26,6 +26,8 @@ final class AudioController {
     var onChange: (() -> Void)?
     /// Called on the main queue when the set of connected display speakers grows.
     var onDisplaysConnected: (() -> Void)?
+    /// Called on the main queue when a display speaker is unplugged.
+    var onDisplaysDisconnected: (() -> Void)?
 
     static let volumeStep: Float = 1.0 / 16.0
     static let fineVolumeStep: Float = 1.0 / 64.0
@@ -40,11 +42,11 @@ final class AudioController {
     private var systemListeners: [CoreAudio.ListenerToken] = []
     private var volumeListeners: [CoreAudio.ListenerToken] = []
     private var notifyScheduled = false
-    private var knownDisplayUIDs: Set<String> = []
+    private var connectedDisplayUIDs: Set<String> = []
 
     init() {
         reload()
-        knownDisplayUIDs = Set(displaySpeakers.map(\.uid))
+        connectedDisplayUIDs = Set(displaySpeakers.map(\.uid))
     }
 
     /// Start observing CoreAudio (only needed by the menu bar app, not the CLI).
@@ -66,6 +68,15 @@ final class AudioController {
         defaultOutputID = CoreAudio.uint32(
             CoreAudio.systemObject, CoreAudio.address(kAudioHardwarePropertyDefaultOutputDevice)
         ) ?? 0
+        rememberDisplays()
+    }
+
+    private func rememberDisplays() {
+        let connected = Set(displaySpeakers.map(\.uid))
+        let remembered = Settings.rememberedDisplayUIDs
+        if !connected.isSubset(of: remembered) {
+            Settings.rememberedDisplayUIDs = remembered.union(connected)
+        }
     }
 
     var defaultOutput: AudioDevice? { devices.first { $0.id == defaultOutputID } }
@@ -227,6 +238,38 @@ final class AudioController {
         return device
     }
 
+    // MARK: Leaving unplugged displays
+
+    /// True when `id` is a Multi-Output Device made only of display speakers, none of which
+    /// is connected any more (e.g. after unplugging the Mac from its displays).
+    func isUnpluggedDisplayMultiOutput(_ id: AudioObjectID) -> Bool {
+        guard let subDevices = AudioDevice.multiOutputSubDeviceUIDs(of: id).map(Set.init),
+              !subDevices.isEmpty
+        else { return false }
+        let connected = Set(displaySpeakers.map(\.uid))
+        let displays = Settings.rememberedDisplayUIDs.union(connected)
+        return subDevices.isSubset(of: displays) && subDevices.isDisjoint(with: connected)
+    }
+
+    /// Sound is going to a Multi-Output Device of displays that are all unplugged, so nothing plays.
+    var isPlayingToUnpluggedDisplays: Bool { isUnpluggedDisplayMultiOutput(defaultOutputID) }
+
+    /// The Mac's own output: the headphone jack when something is plugged into it, otherwise
+    /// the built-in speakers.
+    var builtInOutput: AudioDevice? {
+        let builtIn = devices.filter { $0.transportType == kAudioDeviceTransportTypeBuiltIn }
+        return builtIn.first { $0.uid.localizedCaseInsensitiveContains("headphone") } ?? builtIn.first
+    }
+
+    /// If sound is going to displays that are all unplugged, moves it to the Mac's own output.
+    /// Returns the new output, or nil when nothing needed to change.
+    @discardableResult
+    func leaveUnpluggedDisplays() -> AudioDevice? {
+        reload()
+        guard isPlayingToUnpluggedDisplays, let builtIn = builtInOutput, select(builtIn) else { return nil }
+        return builtIn
+    }
+
     // MARK: Change tracking
 
     private func systemChanged() {
@@ -234,9 +277,11 @@ final class AudioController {
         observeVolume()
 
         let displayUIDs = Set(displaySpeakers.map(\.uid))
-        let gained = !displayUIDs.subtracting(knownDisplayUIDs).isEmpty
-        knownDisplayUIDs = displayUIDs
+        let gained = !displayUIDs.subtracting(connectedDisplayUIDs).isEmpty
+        let lost = !connectedDisplayUIDs.subtracting(displayUIDs).isEmpty
+        connectedDisplayUIDs = displayUIDs
         if gained { onDisplaysConnected?() }
+        if lost { onDisplaysDisconnected?() }
 
         scheduleNotify()
     }
