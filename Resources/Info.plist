@@ -27,6 +27,6 @@
 	<key>LSUIElement</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
-	<string>Plays sound on several displays at once, with working volume keys.</string>
+	<string>Copyright © 2026 gmaendel. MIT License.</string>
 </dict>
 </plist>

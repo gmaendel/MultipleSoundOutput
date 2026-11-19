@@ -28,7 +28,7 @@ targets:
         LSApplicationCategoryType: public.app-category.utilities
         LSMinimumSystemVersion: $(MACOSX_DEPLOYMENT_TARGET)
         LSUIElement: true
-        NSHumanReadableCopyright: "Plays sound on several displays at once, with working volume keys."
+        NSHumanReadableCopyright: "Copyright © 2026 gmaendel. MIT License."
     settings:
       base:
         PRODUCT_NAME: MultipleSoundOutput
