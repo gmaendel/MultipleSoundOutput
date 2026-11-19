@@ -1,0 +1,42 @@
+# XcodeGen spec. Regenerate the Xcode project with:  xcodegen generate
+name: MultipleSoundOutput
+
+options:
+  deploymentTarget:
+    macOS: "14.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+
+targets:
+  MultipleSoundOutput:
+    type: application
+    platform: macOS
+    sources:
+      - path: Sources
+      - path: Resources/Assets.xcassets
+    info:
+      path: Resources/Info.plist
+      properties:
+        CFBundleDisplayName: MultipleSoundOutput
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        LSApplicationCategoryType: public.app-category.utilities
+        LSMinimumSystemVersion: $(MACOSX_DEPLOYMENT_TARGET)
+        LSUIElement: true
+        NSHumanReadableCopyright: "Plays sound on several displays at once, with working volume keys."
+    settings:
+      base:
+        PRODUCT_NAME: MultipleSoundOutput
+        PRODUCT_BUNDLE_IDENTIFIER: com.gmaendel.MultipleSoundOutput
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ENABLE_HARDENED_RUNTIME: YES
+        # A stable signing identity keeps the Accessibility permission valid across rebuilds.
+        CODE_SIGN_STYLE: Manual
+        CODE_SIGN_IDENTITY: "Apple Development"
+        DEVELOPMENT_TEAM: 5UAM478N24
+        PROVISIONING_PROFILE_SPECIFIER: ""

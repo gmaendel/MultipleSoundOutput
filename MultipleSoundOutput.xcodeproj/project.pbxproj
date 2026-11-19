@@ -1,0 +1,393 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0975F27E16169F7DE0C45D14 /* MediaKeyMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B226C2946EB4368927BE8D60 /* MediaKeyMonitor.swift */; };
+		1E33031ECEFBA25EDD306B49 /* CoreAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB62C2B8A2EDF402CB5CFCD7 /* CoreAudio.swift */; };
+		3D75CB4987EA76F3E853C0E8 /* VolumeMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F56B7819C51DD1D1AE506C /* VolumeMenuView.swift */; };
+		3F2757B7CA3587A3EF1A4ECF /* CommandLineInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC50FD5BF62C0A14B4E38822 /* CommandLineInterface.swift */; };
+		5F2785C768D035EFFC376F54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B99CE78CA684A3F485B39414 /* Assets.xcassets */; };
+		712778A5A26535086AB6F35C /* VolumeHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D98B676774836455C6C13F /* VolumeHUD.swift */; };
+		A78D99DED2F1CD9DE8261D34 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753A7AFAA64C1F4B893BD306 /* main.swift */; };
+		A7F986CD4A7233096AC84C1C /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EBC60DD10619D4349FB0F2 /* StatusBarController.swift */; };
+		B4F22E94AE3102F856010B15 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1A67AD6591ACA9FE0AC054 /* Settings.swift */; };
+		BE0BAC0EB2D38D4AAA6ECCB4 /* AudioDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B56D9DAF8828172B9083ADA /* AudioDevice.swift */; };
+		D3FAFA79365DD3780954B83A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70672F8385CD6B660507FF45 /* AppDelegate.swift */; };
+		D99C9D247620FEDD29EED601 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE0F5915A9531A13576657C /* AudioController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		27D98B676774836455C6C13F /* VolumeHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeHUD.swift; sourceTree = "<group>"; };
+		29EBC60DD10619D4349FB0F2 /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
+		3B56D9DAF8828172B9083ADA /* AudioDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDevice.swift; sourceTree = "<group>"; };
+		58F56B7819C51DD1D1AE506C /* VolumeMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeMenuView.swift; sourceTree = "<group>"; };
+		70672F8385CD6B660507FF45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		753A7AFAA64C1F4B893BD306 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		7B1A67AD6591ACA9FE0AC054 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		9CBAE9830E31D1483A0C5426 /* MultipleSoundOutput.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultipleSoundOutput.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B226C2946EB4368927BE8D60 /* MediaKeyMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaKeyMonitor.swift; sourceTree = "<group>"; };
+		B99CE78CA684A3F485B39414 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BB62C2B8A2EDF402CB5CFCD7 /* CoreAudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreAudio.swift; sourceTree = "<group>"; };
+		BFE0F5915A9531A13576657C /* AudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
+		DC50FD5BF62C0A14B4E38822 /* CommandLineInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandLineInterface.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		15E6736E8D44DE54AC1E55CA = {
+			isa = PBXGroup;
+			children = (
+				5379A15246FFA45574FD3C58 /* Resources */,
+				BF8913CE20D041A1A12F09A5 /* Sources */,
+				48D87F61E36F3EBABE8748EB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1B1620F70972203077DC5534 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				BFE0F5915A9531A13576657C /* AudioController.swift */,
+				3B56D9DAF8828172B9083ADA /* AudioDevice.swift */,
+				BB62C2B8A2EDF402CB5CFCD7 /* CoreAudio.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		26ABE5F3BE92C034D57384CE /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				29EBC60DD10619D4349FB0F2 /* StatusBarController.swift */,
+				27D98B676774836455C6C13F /* VolumeHUD.swift */,
+				58F56B7819C51DD1D1AE506C /* VolumeMenuView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		48D87F61E36F3EBABE8748EB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9CBAE9830E31D1483A0C5426 /* MultipleSoundOutput.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5379A15246FFA45574FD3C58 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B99CE78CA684A3F485B39414 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		93D9433D47E7B06775D8A59A /* Input */ = {
+			isa = PBXGroup;
+			children = (
+				B226C2946EB4368927BE8D60 /* MediaKeyMonitor.swift */,
+			);
+			path = Input;
+			sourceTree = "<group>";
+		};
+		BF8913CE20D041A1A12F09A5 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				FFF1D811B1DD905F95F28785 /* App */,
+				1B1620F70972203077DC5534 /* Audio */,
+				93D9433D47E7B06775D8A59A /* Input */,
+				26ABE5F3BE92C034D57384CE /* UI */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		FFF1D811B1DD905F95F28785 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				70672F8385CD6B660507FF45 /* AppDelegate.swift */,
+				DC50FD5BF62C0A14B4E38822 /* CommandLineInterface.swift */,
+				753A7AFAA64C1F4B893BD306 /* main.swift */,
+				7B1A67AD6591ACA9FE0AC054 /* Settings.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		61059C8B25FA5FDA520F3668 /* MultipleSoundOutput */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 579B19D26D27ABA8A7A15AE3 /* Build configuration list for PBXNativeTarget "MultipleSoundOutput" */;
+			buildPhases = (
+				32EEAD8EE8B7AC65DAA2A5C7 /* Sources */,
+				B317EE29730F7CBEC36A535F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MultipleSoundOutput;
+			packageProductDependencies = (
+			);
+			productName = MultipleSoundOutput;
+			productReference = 9CBAE9830E31D1483A0C5426 /* MultipleSoundOutput.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		07DAE5D1CB6A317E76D484E5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					61059C8B25FA5FDA520F3668 = {
+						DevelopmentTeam = 5UAM478N24;
+						ProvisioningStyle = Manual;
+					};
+				};
+			};
+			buildConfigurationList = 749051EAB2E2068C1047767A /* Build configuration list for PBXProject "MultipleSoundOutput" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 15E6736E8D44DE54AC1E55CA;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 48D87F61E36F3EBABE8748EB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				61059C8B25FA5FDA520F3668 /* MultipleSoundOutput */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B317EE29730F7CBEC36A535F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F2785C768D035EFFC376F54 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		32EEAD8EE8B7AC65DAA2A5C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3FAFA79365DD3780954B83A /* AppDelegate.swift in Sources */,
+				D99C9D247620FEDD29EED601 /* AudioController.swift in Sources */,
+				BE0BAC0EB2D38D4AAA6ECCB4 /* AudioDevice.swift in Sources */,
+				3F2757B7CA3587A3EF1A4ECF /* CommandLineInterface.swift in Sources */,
+				1E33031ECEFBA25EDD306B49 /* CoreAudio.swift in Sources */,
+				0975F27E16169F7DE0C45D14 /* MediaKeyMonitor.swift in Sources */,
+				B4F22E94AE3102F856010B15 /* Settings.swift in Sources */,
+				A7F986CD4A7233096AC84C1C /* StatusBarController.swift in Sources */,
+				712778A5A26535086AB6F35C /* VolumeHUD.swift in Sources */,
+				3D75CB4987EA76F3E853C0E8 /* VolumeMenuView.swift in Sources */,
+				A78D99DED2F1CD9DE8261D34 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		2EF3D82C9C5ABD9C2D10862E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 5UAM478N24;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.gmaendel.MultipleSoundOutput;
+				PRODUCT_NAME = MultipleSoundOutput;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		A6521FE107C2F818616DD5FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		AED0874AF1EEAA9BD09680E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		BA6877D2682975F439F7589D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 5UAM478N24;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.gmaendel.MultipleSoundOutput;
+				PRODUCT_NAME = MultipleSoundOutput;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		579B19D26D27ABA8A7A15AE3 /* Build configuration list for PBXNativeTarget "MultipleSoundOutput" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA6877D2682975F439F7589D /* Debug */,
+				2EF3D82C9C5ABD9C2D10862E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		749051EAB2E2068C1047767A /* Build configuration list for PBXProject "MultipleSoundOutput" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A6521FE107C2F818616DD5FF /* Debug */,
+				AED0874AF1EEAA9BD09680E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 07DAE5D1CB6A317E76D484E5 /* Project object */;
+}
