@@ -28,6 +28,9 @@ final class AudioController {
     var onDisplaysConnected: (() -> Void)?
     /// Called on the main queue when a display speaker is unplugged.
     var onDisplaysDisconnected: (() -> Void)?
+    /// Called on the main queue when the all-displays Multi-Output Device that sound was playing
+    /// through disappears, e.g. because it was deleted in Audio MIDI Setup.
+    var onDisplayOutputRemoved: (() -> Void)?
 
     static let volumeStep: Float = 1.0 / 16.0
     static let fineVolumeStep: Float = 1.0 / 64.0
@@ -43,6 +46,9 @@ final class AudioController {
     private var volumeListeners: [CoreAudio.ListenerToken] = []
     private var notifyScheduled = false
     private var connectedDisplayUIDs: Set<String> = []
+    /// The all-displays Multi-Output Device as of the last reload, if sound was going to it.
+    /// Kept because a deleted device can no longer be asked what it was.
+    private var displayOutputInUse: AudioObjectID?
 
     init() {
         reload()
@@ -69,6 +75,7 @@ final class AudioController {
             CoreAudio.systemObject, CoreAudio.address(kAudioHardwarePropertyDefaultOutputDevice)
         ) ?? 0
         rememberDisplays()
+        displayOutputInUse = isUsingDisplayMultiOutput ? defaultOutputID : nil
     }
 
     private func rememberDisplays() {
@@ -273,8 +280,13 @@ final class AudioController {
     // MARK: Change tracking
 
     private func systemChanged() {
+        let displayOutputBefore = displayOutputInUse
         reload()
         observeVolume()
+
+        if let removed = displayOutputBefore, !devices.contains(where: { $0.id == removed }) {
+            onDisplayOutputRemoved?()
+        }
 
         let displayUIDs = Set(displaySpeakers.map(\.uid))
         let gained = !displayUIDs.subtracting(connectedDisplayUIDs).isEmpty

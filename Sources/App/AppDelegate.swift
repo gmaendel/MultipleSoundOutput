@@ -25,6 +25,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         audio.onDisplaysDisconnected = { [weak self] in
             self?.switchOutputAutomatically(after: 1.0, toDisplays: false)
         }
+        // Deleting the Multi-Output Device in use (e.g. in Audio MIDI Setup) leaves sound on one
+        // display; put it back on all of them, making a new device if needed.
+        audio.onDisplayOutputRemoved = { [weak self] in self?.switchOutputAutomatically(after: 1.0) }
         audio.startObserving()
 
         NSWorkspace.shared.notificationCenter.addObserver(
@@ -73,8 +76,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     /// Keeps sound where it belongs as displays come and go:
     /// - With `toDisplays`, moves it to the all-displays multi-output when two or more displays
-    ///   are connected. This runs on launch, on wake, and when a display is plugged in — not
-    ///   when the user picks another output by hand.
+    ///   are connected. This runs on launch, on wake, when a display is plugged in, and when the
+    ///   multi-output in use is deleted — not when the user picks another output by hand.
     /// - Moves it to the Mac's own speakers when the displays it was playing through are all
     ///   unplugged. Any other output the user picked is left alone.
     private func switchOutputAutomatically(after delay: TimeInterval, toDisplays: Bool = true) {
